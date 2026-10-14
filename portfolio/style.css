@@ -357,6 +357,27 @@ section {
   padding: 1.4rem;
 }
 
+.experience-preview {
+  display: grid;
+  justify-items: start;
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.experience-preview img {
+  display: block;
+  width: min(100%, 760px);
+  max-height: 360px;
+  object-fit: cover;
+  object-position: top;
+  border: 1px solid var(--border);
+  border-radius: 0.85rem;
+}
+
+.experience-preview img[hidden] {
+  display: none;
+}
+
 .meta {
   color: var(--accent);
   font-weight: 600;
