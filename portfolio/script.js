@@ -1,31 +1,55 @@
+
+// ======================================
+// SCROLL REVEAL ANIMATION
+// ======================================
+
 const sections = document.querySelectorAll("section");
 
 const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-      }
-    });
-  },
-  { threshold: 0.15 }
+    (entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+            }
+        });
+    },
+    {
+        threshold: 0.15
+    }
 );
 
-sections.forEach((section) => observer.observe(section));
+sections.forEach((section) => {
+    observer.observe(section);
+});
 
-const experiencePreview = document.querySelector(".experience-preview");
 
-if (experiencePreview) {
-  const screenshot = experiencePreview.querySelector("img");
-  const toggleButton = experiencePreview.querySelector(".experience-toggle");
+// ======================================
+// AVID FUELS PROJECT SCREENSHOT TOGGLE
+// ======================================
 
-  if (screenshot && toggleButton) {
-    toggleButton.addEventListener("click", () => {
-      screenshot.hidden = !screenshot.hidden;
-      toggleButton.setAttribute("aria-expanded", String(!screenshot.hidden));
-      toggleButton.textContent = screenshot.hidden
-        ? "View Project Screenshot"
-        : "Hide Project Screenshot";
+document.querySelectorAll(".experience-preview").forEach((preview) => {
+
+    const screenshot = preview.querySelector("#avid-screenshot");
+    const toggleButton = preview.querySelector(".experience-toggle");
+
+    if (!screenshot || !toggleButton) return;
+
+    toggleButton.addEventListener("click", function () {
+
+        // Toggle screenshot visibility
+        screenshot.hidden = !screenshot.hidden;
+
+        // Update button text
+        toggleButton.textContent = screenshot.hidden
+            ? "View Project Screenshot"
+            : "Hide Project Screenshot";
+
+        // Update accessibility attribute
+        toggleButton.setAttribute(
+            "aria-expanded",
+            String(!screenshot.hidden)
+        );
+
     });
-  }
-}
+
+});
